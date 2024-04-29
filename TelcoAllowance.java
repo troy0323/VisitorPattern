@@ -1,14 +1,14 @@
-class TelcoAllowance implements UsagePromo {
-    @Override
-    public String showAllowance(String telcoName, double money) {
-        return telcoName + " Data Usage Offer and price: " + money;
-    }
-}
+public class TelcoAllowance implements UsagePromo{
+    private static Map<String, Integer> promoMap = new HashMap<>();
 
-// Implement the UnliCallOffer interface
-class UnliCallTextPackage implements UnliCallOffer {
+    static {
+        promoMap.put("Smart", 15);
+        promoMap.put("Globe", 10);
+        promoMap.put("Ditto", 8);
+    }
+
     @Override
-    public String showUnliCallsTextOffer(String telcoName, boolean unliCallText) {
-        return telcoName + " unlimited calls and text package: " + (unliCallText ? "Included" : "Not Included");
+    public String showAllowance(String telcoName, double promoPrice) {
+        return promoMap.get(telcoName) + "GB " + promoPrice + "PHP";
     }
 }
